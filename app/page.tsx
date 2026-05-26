@@ -223,7 +223,7 @@ export default function HomePage() {
           onMouseEnter={e => (e.currentTarget.style.transform = "scale(1.05)")}
           onMouseLeave={e => (e.currentTarget.style.transform = "scale(1)")}
         >
-          Get App ↗
+          &#8203; &#8203; &#8203; Get App &#8203; &#8203;
         </a>
       </nav>
 
@@ -255,7 +255,7 @@ export default function HomePage() {
           style={{ background: "rgba(201,168,76,0.10)", border: "1px solid rgba(201,168,76,0.25)", color: "var(--gold-light)", marginBottom: 32 }}
         >
           <span className="w-1.5 h-1.5 rounded-full inline-block" style={{ background: "var(--gold)", boxShadow: "0 0 6px var(--gold)" }} />
-          Now Available — Version 2.0
+          Now Available — Version 2.0 &#8203; &#8203;
         </div>
 
         {/* Headline */}
@@ -295,7 +295,7 @@ export default function HomePage() {
             onMouseEnter={e => { e.currentTarget.style.transform = "scale(1.05)"; e.currentTarget.style.boxShadow = "0 12px 40px rgba(201,168,76,0.45)"; }}
             onMouseLeave={e => { e.currentTarget.style.transform = "scale(1)"; e.currentTarget.style.boxShadow = "0 8px 32px rgba(201,168,76,0.3)"; }}
           >
-            ⬇ Download Free
+          &#8203; &#8203; Download Free &#8203; &#8203;
           </a>
           <a
             href="#features"
@@ -304,7 +304,7 @@ export default function HomePage() {
             onMouseEnter={e => e.currentTarget.style.transform = "scale(1.04)"}
             onMouseLeave={e => e.currentTarget.style.transform = "scale(1)"}
           >
-            Explore Features →
+            &#8203; &#8203;Explore Features &#8203; &#8203;
           </a>
         </div>
 
@@ -358,7 +358,7 @@ export default function HomePage() {
       <section id="features" style={{ paddingTop: 96, paddingBottom: 96 }}>
         <Container maxWidth={1152}>
           <div style={{ textAlign: "center", marginBottom: 64 }}>
-            <SectionLabel>Core Features</SectionLabel>
+            <SectionLabel>&#8203; &#8203; Core Features &#8203; &#8203;</SectionLabel>
             <h2
               className="font-display font-semibold"
               style={{ fontSize: "clamp(2rem, 5vw, 3.5rem)", lineHeight: 1.1, marginBottom: 16 }}
@@ -402,7 +402,7 @@ export default function HomePage() {
       <section id="screenshots" style={{ paddingTop: 96, paddingBottom: 96, overflow: "hidden" }}>
         <Container maxWidth={1152}>
           <div style={{ textAlign: "center", marginBottom: 64 }}>
-            <SectionLabel>App Previews</SectionLabel>
+            <SectionLabel> &#8203; &#8203; &#8203; &#8203;App Previews &#8203; &#8203;</SectionLabel>
             <h2
               className="font-display font-semibold"
               style={{ fontSize: "clamp(2rem, 5vw, 3.5rem)", lineHeight: 1.1, marginBottom: 16 }}
@@ -465,7 +465,7 @@ export default function HomePage() {
       <section style={{ paddingTop: 96, paddingBottom: 96 }}>
         <Container maxWidth={1024}>
           <div style={{ textAlign: "center", marginBottom: 64 }}>
-            <SectionLabel>How It Works</SectionLabel>
+            <SectionLabel>&#8203; &#8203; &#8203; How It Works &#8203; &#8203;</SectionLabel>
             <h2
               className="font-display font-semibold"
               style={{ fontSize: "clamp(2rem, 5vw, 3.5rem)", lineHeight: 1.1 }}
@@ -487,7 +487,7 @@ export default function HomePage() {
               }}
             />
             {[
-              { num: "01", title: "Create Your Account", desc: "Set up your account, email and define the habit domains you want to conquer.", color: "var(--gold)", icon: "🧙" },
+              { num: "01", title: "Create Your Hero", desc: "Set up your character, choose your class, and define the habit domains you want to conquer.", color: "var(--gold)", icon: "🧙" },
               { num: "02", title: "Accept Quests", desc: "Add tasks and reminders as quests. Assign difficulty, XP rewards, and deadline enchantments.", color: "var(--accent-purple)", icon: "📜" },
               { num: "03", title: "Conquer & Earn", desc: "Complete quests, earn XP, unlock mini-games and rare skills. Watch your productivity legend grow.", color: "var(--accent-teal)", icon: "⚡" },
             ].map((step) => (
@@ -523,7 +523,7 @@ export default function HomePage() {
       {/* ════════════ REVIEWS ════════════ */}
       <section id="reviews" style={{ paddingTop: 96, paddingBottom: 96, overflow: "hidden" }}>
         <Container maxWidth={1152} style={{ textAlign: "center", marginBottom: 64 }}>
-          <SectionLabel>Testimonials</SectionLabel>
+          <SectionLabel>&#8203; &#8203; &#8203; Testimonials &#8203; &#8203;</SectionLabel>
           <h2
             className="font-display font-semibold"
             style={{ fontSize: "clamp(2rem, 5vw, 3.5rem)", lineHeight: 1.1 }}
@@ -576,7 +576,7 @@ export default function HomePage() {
         <div className="absolute inset-x-0 h-px top-0" style={{ background: "linear-gradient(90deg, transparent, rgba(201,168,76,0.4), transparent)" }} />
 
         <Container maxWidth={896} style={{ textAlign: "center", position: "relative", zIndex: 10 }}>
-          <SectionLabel>Begin Your Quest</SectionLabel>
+          <SectionLabel>&#8203; &#8203; &#8203; Begin Your Quest &#8203; &#8203;</SectionLabel>
 
           <h2
             className="font-display font-semibold"
@@ -593,29 +593,27 @@ export default function HomePage() {
             routine into an unforgettable adventure.
           </p>
 
-          <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "center", gap: 16, marginBottom: 56 }}>
-            {[
-              { icon: "🍎", sub: "Download on the", platform: "App Store" },
-              { icon: "▶", sub: "Get it on", platform: "Google Play" },
-            ].map((btn) => (
-              <button
-                key={btn.platform}
-                className="flex items-center gap-4 px-8 py-4 rounded-2xl transition-all duration-300 glow-pulse"
-                style={{
-                  background: "linear-gradient(135deg, rgba(201,168,76,0.12), rgba(107,79,187,0.08))",
-                  border: "1px solid rgba(201,168,76,0.35)",
-                  cursor: "none",
-                }}
-                onMouseEnter={e => e.currentTarget.style.transform = "scale(1.05)"}
-                onMouseLeave={e => e.currentTarget.style.transform = "scale(1)"}
-              >
-                <span className="text-3xl">{btn.icon}</span>
-                <div className="text-left">
-                  <div className="text-xs" style={{ color: "var(--text-muted)" }}>{btn.sub}</div>
-                  <div className="font-display text-lg font-semibold" style={{ color: "var(--gold-light)" }}>{btn.platform}</div>
-                </div>
-              </button>
-            ))}
+          <div style={{ display: "flex", justifyContent: "center", marginBottom: 56 }}>
+            <a
+              href="https://www.mediafire.com/file/ccpzsnr75ppzw0x/TimeQue.apk/file"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-4 px-8 py-4 rounded-2xl transition-all duration-300 glow-pulse"
+              style={{
+                background: "linear-gradient(135deg, rgba(201,168,76,0.12), rgba(107,79,187,0.08))",
+                border: "1px solid rgba(201,168,76,0.35)",
+                cursor: "none",
+                textDecoration: "none",
+              }}
+              onMouseEnter={(e: React.MouseEvent<HTMLAnchorElement>) => { e.currentTarget.style.transform = "scale(1.05)"; }}
+              onMouseLeave={(e: React.MouseEvent<HTMLAnchorElement>) => { e.currentTarget.style.transform = "scale(1)"; }}
+            >
+              <span className="text-3xl">🔥</span>
+              <div className="text-left">
+                <div className="text-xs" style={{ color: "var(--text-muted)" }}>Download on &#8203; &#8203; &#8203; &#8203; &#8203; &#8203;</div>
+                <div className="font-display text-lg font-semibold" style={{ color: "var(--gold-light)" }}>Mediafire</div>
+              </div>
+            </a>
           </div>
 
           {/* Download phones */}
