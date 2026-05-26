@@ -487,7 +487,7 @@ export default function HomePage() {
               }}
             />
             {[
-              { num: "01", title: "Create Your Hero", desc: "Set up your character, choose your class, and define the habit domains you want to conquer.", color: "var(--gold)", icon: "🧙" },
+              { num: "01", title: "Create Your Account", desc: "Set up your account, email and define the habit domains you want to conquer.", color: "var(--gold)", icon: "🧙" },
               { num: "02", title: "Accept Quests", desc: "Add tasks and reminders as quests. Assign difficulty, XP rewards, and deadline enchantments.", color: "var(--accent-purple)", icon: "📜" },
               { num: "03", title: "Conquer & Earn", desc: "Complete quests, earn XP, unlock mini-games and rare skills. Watch your productivity legend grow.", color: "var(--accent-teal)", icon: "⚡" },
             ].map((step) => (
