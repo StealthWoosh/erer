@@ -97,3 +97,14 @@ body {
 /* Review scroll */
 @keyframes scrollLeft { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
 .scroll-left { animation: scrollLeft 30s linear infinite; }
+
+/* Fix container centering */
+.phone-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 100%;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}

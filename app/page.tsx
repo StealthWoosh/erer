@@ -36,7 +36,39 @@ function CustomCursor() {
 }
 
 /* ──────────────────────────────────────
-   Phone Frame with real image
+   Reusable centered container
+────────────────────────────────────── */
+function Container({
+  children,
+  maxWidth = 1152,
+  style = {},
+  className = "",
+}: {
+  children: React.ReactNode;
+  maxWidth?: number;
+  style?: React.CSSProperties;
+  className?: string;
+}) {
+  return (
+    <div
+      className={className}
+      style={{
+        width: "100%",
+        maxWidth,
+        marginLeft: "auto",
+        marginRight: "auto",
+        paddingLeft: 24,
+        paddingRight: 24,
+        ...style,
+      }}
+    >
+      {children}
+    </div>
+  );
+}
+
+/* ──────────────────────────────────────
+   Phone Frame
 ────────────────────────────────────── */
 function PhoneFrame({
   src,
@@ -50,12 +82,8 @@ function PhoneFrame({
   return (
     <div
       className={`relative flex-shrink-0 ${className}`}
-      style={{
-        width: 200,
-        height: 433, /* 9:16 ratio at 200px wide */
-      }}
+      style={{ width: 200, height: 433 }}
     >
-      {/* Outer bezel */}
       <div
         className="absolute inset-0 rounded-[2.6rem] overflow-hidden"
         style={{
@@ -65,7 +93,6 @@ function PhoneFrame({
             "0 0 0 5px #0a0a0f, 0 0 0 6.5px rgba(201,168,76,0.10), 0 32px 64px rgba(0,0,0,0.75), inset 0 0 40px rgba(201,168,76,0.04)",
         }}
       >
-        {/* Notch */}
         <div
           className="absolute top-2.5 left-1/2 -translate-x-1/2 z-10 rounded-full"
           style={{
@@ -75,7 +102,6 @@ function PhoneFrame({
             border: "1px solid rgba(201,168,76,0.10)",
           }}
         />
-        {/* Screenshot */}
         <div className="absolute inset-0 overflow-hidden rounded-[2.6rem]">
           <Image
             src={src}
@@ -150,9 +176,7 @@ export default function HomePage() {
     <main style={{ background: "var(--obsidian)", minHeight: "100vh", cursor: "none" }}>
       <CustomCursor />
 
-      {/* ════════════════════════════
-          NAV
-      ════════════════════════════ */}
+      {/* ════════════ NAV ════════════ */}
       <nav
         className="fixed top-0 inset-x-0 z-50 flex items-center justify-between px-8 py-5 transition-all duration-500"
         style={{
@@ -203,10 +227,21 @@ export default function HomePage() {
         </a>
       </nav>
 
-      {/* ════════════════════════════
-          HERO
-      ════════════════════════════ */}
-      <section className="relative min-h-screen flex flex-col items-center justify-center text-center px-6 pt-28 pb-16 overflow-hidden">
+      {/* ════════════ HERO ════════════ */}
+      <section
+        className="relative min-h-screen overflow-hidden"
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          textAlign: "center",
+          paddingTop: 112,
+          paddingBottom: 64,
+          paddingLeft: 24,
+          paddingRight: 24,
+        }}
+      >
         {/* Background orbs */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <div className="absolute rounded-full blur-3xl" style={{ width: 700, height: 700, top: "-15%", left: "55%", background: "radial-gradient(circle, rgba(107,79,187,0.18) 0%, transparent 70%)" }} />
@@ -216,8 +251,8 @@ export default function HomePage() {
 
         {/* Badge */}
         <div
-          className="fade-in-up delay-1 inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-medium mb-8"
-          style={{ background: "rgba(201,168,76,0.10)", border: "1px solid rgba(201,168,76,0.25)", color: "var(--gold-light)" }}
+          className="fade-in-up delay-1 inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-medium"
+          style={{ background: "rgba(201,168,76,0.10)", border: "1px solid rgba(201,168,76,0.25)", color: "var(--gold-light)", marginBottom: 32 }}
         >
           <span className="w-1.5 h-1.5 rounded-full inline-block" style={{ background: "var(--gold)", boxShadow: "0 0 6px var(--gold)" }} />
           Now Available — Version 2.0
@@ -225,8 +260,8 @@ export default function HomePage() {
 
         {/* Headline */}
         <h1
-          className="fade-in-up delay-2 font-display font-semibold tracking-tight mb-6"
-          style={{ fontSize: "clamp(2.8rem, 7.5vw, 6.5rem)", lineHeight: 1.0, maxWidth: 860 }}
+          className="fade-in-up delay-2 font-display font-semibold tracking-tight"
+          style={{ fontSize: "clamp(2.8rem, 7.5vw, 6.5rem)", lineHeight: 1.0, maxWidth: 860, width: "100%", marginBottom: 24 }}
         >
           Your Time,{" "}
           <span className="gold-shimmer">Gamified.</span>
@@ -236,15 +271,18 @@ export default function HomePage() {
 
         {/* Sub */}
         <p
-          className="fade-in-up delay-3 text-lg leading-relaxed mb-10"
-          style={{ color: "var(--text-muted)", maxWidth: 520 }}
+          className="fade-in-up delay-3 text-lg leading-relaxed"
+          style={{ color: "var(--text-muted)", maxWidth: 520, width: "100%", marginBottom: 40 }}
         >
           TimeQue transforms ordinary reminders into epic adventures. Level up your
           habits, earn rare rewards, and conquer every deadline — one quest at a time.
         </p>
 
         {/* CTAs */}
-        <div className="fade-in-up delay-4 flex flex-col sm:flex-row items-center gap-4 mb-20">
+        <div
+          className="fade-in-up delay-4"
+          style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "center", gap: 16, marginBottom: 80 }}
+        >
           <a
             href="#download"
             className="flex items-center gap-3 px-8 py-4 rounded-2xl text-base font-medium transition-all duration-300"
@@ -270,67 +308,74 @@ export default function HomePage() {
           </a>
         </div>
 
-        {/* Hero phones — 3 phones centered */}
-        <div className="fade-in-up delay-5 relative w-full flex items-end justify-center gap-6">
-          <div className="hidden lg:block float-delay" style={{ transform: "rotate(-7deg) translateY(28px)", opacity: 0.75 }}>
+        {/* Hero phones */}
+        <div
+          className="fade-in-up delay-5"
+          style={{ display: "flex", alignItems: "flex-end", justifyContent: "center", gap: 24, width: "100%" }}
+        >
+          <div className="hidden lg:block float-delay" style={{ transform: "rotate(-7deg) translateY(28px)", opacity: 0.75, flexShrink: 0 }}>
             <PhoneFrame src="/ss2_welcome.jpg" alt="Welcome Screen" />
           </div>
-          <div className="float relative z-10">
+          <div className="float relative z-10" style={{ flexShrink: 0 }}>
             <div className="absolute -inset-6 rounded-[3.5rem] blur-2xl opacity-60" style={{ background: "linear-gradient(135deg, rgba(201,168,76,0.2), rgba(107,79,187,0.15))" }} />
             <PhoneFrame src="/ss1_splash.jpg" alt="Splash Screen" />
           </div>
-          <div className="hidden lg:block float-delay-2" style={{ transform: "rotate(7deg) translateY(28px)", opacity: 0.75 }}>
+          <div className="hidden lg:block float-delay-2" style={{ transform: "rotate(7deg) translateY(28px)", opacity: 0.75, flexShrink: 0 }}>
             <PhoneFrame src="/ss3_explore.jpg" alt="Explore Screen" />
           </div>
         </div>
       </section>
 
-      {/* ════════════════════════════
-          STATS
-      ════════════════════════════ */}
-      <section className="relative py-20 px-6">
+      {/* ════════════ STATS ════════════ */}
+      <section style={{ position: "relative", paddingTop: 80, paddingBottom: 80 }}>
         <div className="absolute inset-x-0 h-px top-0" style={{ background: "linear-gradient(90deg, transparent, rgba(201,168,76,0.3), transparent)" }} />
-        <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4">
-          {[
-            { value: "2.4M+", label: "Active Questers", icon: "👥" },
-            { value: "98%", label: "User Satisfaction", icon: "⭐" },
-            { value: "340M", label: "Tasks Completed", icon: "✅" },
-            { value: "4.9★", label: "App Store Rating", icon: "🏆" },
-          ].map((s) => (
-            <div
-              key={s.label}
-              className="p-6 rounded-2xl flex flex-col gap-2"
-              style={{ background: "linear-gradient(135deg, rgba(28,28,46,0.8), rgba(20,20,32,0.9))", border: "1px solid rgba(201,168,76,0.15)" }}
-            >
-              <div className="text-2xl mb-1">{s.icon}</div>
-              <div className="font-display text-3xl font-semibold gold-shimmer" style={{ lineHeight: 1.1 }}>{s.value}</div>
-              <div className="text-sm" style={{ color: "var(--text-muted)" }}>{s.label}</div>
-            </div>
-          ))}
-        </div>
+        <Container maxWidth={1024}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 16 }}
+            className="md:grid-cols-4"
+          >
+            {/* Use inline grid for reliability */}
+            {[
+              { value: "2.4M+", label: "Active Questers", icon: "👥" },
+              { value: "98%", label: "User Satisfaction", icon: "⭐" },
+              { value: "340M", label: "Tasks Completed", icon: "✅" },
+              { value: "4.9★", label: "App Store Rating", icon: "🏆" },
+            ].map((s) => (
+              <div
+                key={s.label}
+                className="p-6 rounded-2xl flex flex-col gap-2"
+                style={{ background: "linear-gradient(135deg, rgba(28,28,46,0.8), rgba(20,20,32,0.9))", border: "1px solid rgba(201,168,76,0.15)" }}
+              >
+                <div className="text-2xl mb-1">{s.icon}</div>
+                <div className="font-display text-3xl font-semibold gold-shimmer" style={{ lineHeight: 1.1 }}>{s.value}</div>
+                <div className="text-sm" style={{ color: "var(--text-muted)" }}>{s.label}</div>
+              </div>
+            ))}
+          </div>
+        </Container>
       </section>
 
-      {/* ════════════════════════════
-          FEATURES
-      ════════════════════════════ */}
-      <section id="features" className="py-24 px-6">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
+      {/* ════════════ FEATURES ════════════ */}
+      <section id="features" style={{ paddingTop: 96, paddingBottom: 96 }}>
+        <Container maxWidth={1152}>
+          <div style={{ textAlign: "center", marginBottom: 64 }}>
             <SectionLabel>Core Features</SectionLabel>
-            <h2 className="font-display font-semibold mb-4" style={{ fontSize: "clamp(2rem, 5vw, 3.5rem)", lineHeight: 1.1 }}>
+            <h2
+              className="font-display font-semibold"
+              style={{ fontSize: "clamp(2rem, 5vw, 3.5rem)", lineHeight: 1.1, marginBottom: 16 }}
+            >
               Everything you need to{" "}
               <span className="gold-shimmer">master time</span>
             </h2>
-            <p className="text-lg max-w-xl mx-auto" style={{ color: "var(--text-muted)" }}>
+            <p style={{ fontSize: 18, color: "var(--text-muted)", maxWidth: 560, margin: "0 auto" }}>
               A powerful suite of gamification tools designed to make productivity feel like the adventure it truly is.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 20 }}>
             {features.map((f) => (
               <div
                 key={f.title}
-                className="group relative p-7 rounded-3xl overflow-hidden transition-all duration-400"
+                className="relative p-7 rounded-3xl overflow-hidden transition-all duration-400"
                 style={{
                   background: "linear-gradient(135deg, rgba(20,20,32,0.95), rgba(15,15,26,0.95))",
                   border: "1px solid rgba(201,168,76,0.10)",
@@ -350,27 +395,28 @@ export default function HomePage() {
               </div>
             ))}
           </div>
-        </div>
+        </Container>
       </section>
 
-      {/* ════════════════════════════
-          SCREENSHOTS
-      ════════════════════════════ */}
-      <section id="screenshots" className="py-24 px-6 overflow-hidden">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
+      {/* ════════════ SCREENSHOTS ════════════ */}
+      <section id="screenshots" style={{ paddingTop: 96, paddingBottom: 96, overflow: "hidden" }}>
+        <Container maxWidth={1152}>
+          <div style={{ textAlign: "center", marginBottom: 64 }}>
             <SectionLabel>App Previews</SectionLabel>
-            <h2 className="font-display font-semibold mb-4" style={{ fontSize: "clamp(2rem, 5vw, 3.5rem)", lineHeight: 1.1 }}>
+            <h2
+              className="font-display font-semibold"
+              style={{ fontSize: "clamp(2rem, 5vw, 3.5rem)", lineHeight: 1.1, marginBottom: 16 }}
+            >
               Crafted with{" "}
               <span className="gold-shimmer">obsessive detail</span>
             </h2>
-            <p className="text-lg max-w-xl mx-auto" style={{ color: "var(--text-muted)" }}>
+            <p style={{ fontSize: 18, color: "var(--text-muted)", maxWidth: 560, margin: "0 auto" }}>
               Every screen meticulously designed to inspire action and delight the senses.
             </p>
           </div>
 
-          {/* 5 phones in a row, centered, responsive */}
-          <div className="flex items-end justify-center gap-4 flex-wrap md:flex-nowrap">
+          {/* 5 phones */}
+          <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "center", gap: 16, flexWrap: "nowrap" }}>
             {screenshots.map((s, i) => {
               const isCenter = i === 2;
               const sideOffset = Math.abs(i - 2);
@@ -380,11 +426,12 @@ export default function HomePage() {
               return (
                 <div
                   key={s.src}
-                  className={isCenter ? "float relative z-10" : sideOffset === 1 ? "float-delay" : "float-delay-2 hidden md:block"}
+                  className={isCenter ? "float relative z-10" : sideOffset === 1 ? "float-delay" : "float-delay-2"}
                   style={{
                     transform: `rotate(${rotations[i]}deg) translateY(${yOffsets[i]}px)`,
                     opacity: opacities[i],
                     flexShrink: 0,
+                    display: sideOffset === 2 ? undefined : undefined,
                   }}
                 >
                   {isCenter && (
@@ -399,8 +446,8 @@ export default function HomePage() {
             })}
           </div>
 
-          {/* Labels below */}
-          <div className="flex justify-center gap-4 mt-16 flex-wrap">
+          {/* Labels */}
+          <div style={{ display: "flex", justifyContent: "center", gap: 12, marginTop: 64, flexWrap: "wrap" }}>
             {screenshots.map((s) => (
               <div
                 key={s.alt}
@@ -411,27 +458,28 @@ export default function HomePage() {
               </div>
             ))}
           </div>
-        </div>
+        </Container>
       </section>
 
-      {/* ════════════════════════════
-          HOW IT WORKS
-      ════════════════════════════ */}
-      <section className="py-24 px-6">
-        <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-16">
+      {/* ════════════ HOW IT WORKS ════════════ */}
+      <section style={{ paddingTop: 96, paddingBottom: 96 }}>
+        <Container maxWidth={1024}>
+          <div style={{ textAlign: "center", marginBottom: 64 }}>
             <SectionLabel>How It Works</SectionLabel>
-            <h2 className="font-display font-semibold" style={{ fontSize: "clamp(2rem, 5vw, 3.5rem)", lineHeight: 1.1 }}>
+            <h2
+              className="font-display font-semibold"
+              style={{ fontSize: "clamp(2rem, 5vw, 3.5rem)", lineHeight: 1.1 }}
+            >
               Three steps to{" "}
               <span className="gold-shimmer">legendary productivity</span>
             </h2>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6 relative">
-            {/* Connector line */}
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 24, position: "relative" }}>
             <div
-              className="hidden md:block absolute top-10 h-px"
+              className="hidden md:block absolute h-px"
               style={{
+                top: 40,
                 left: "calc(16.67% + 2.5rem)",
                 right: "calc(16.67% + 2.5rem)",
                 background: "linear-gradient(90deg, var(--gold), var(--accent-purple), var(--accent-teal))",
@@ -445,45 +493,55 @@ export default function HomePage() {
             ].map((step) => (
               <div
                 key={step.num}
-                className="relative p-8 rounded-3xl text-center"
-                style={{ background: "linear-gradient(135deg, rgba(20,20,32,0.9), rgba(15,15,26,0.9))", border: `1px solid ${step.color}20` }}
+                className="relative p-8 rounded-3xl"
+                style={{
+                  background: "linear-gradient(135deg, rgba(20,20,32,0.9), rgba(15,15,26,0.9))",
+                  border: `1px solid ${step.color}20`,
+                  textAlign: "center",
+                }}
               >
                 <div
-                  className="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl mx-auto mb-5"
-                  style={{ background: `linear-gradient(135deg, ${step.color}22, ${step.color}08)`, border: `1px solid ${step.color}30` }}
+                  className="flex items-center justify-center text-3xl rounded-2xl"
+                  style={{
+                    width: 64, height: 64,
+                    background: `linear-gradient(135deg, ${step.color}22, ${step.color}08)`,
+                    border: `1px solid ${step.color}30`,
+                    margin: "0 auto 20px",
+                  }}
                 >
                   {step.icon}
                 </div>
-                <div className="font-display text-5xl font-bold mb-3 opacity-15" style={{ color: step.color }}>{step.num}</div>
+                <div className="font-display text-5xl font-bold mb-3" style={{ color: step.color, opacity: 0.15 }}>{step.num}</div>
                 <h3 className="font-display text-xl font-semibold mb-3" style={{ color: "var(--text-primary)" }}>{step.title}</h3>
                 <p className="text-sm leading-relaxed" style={{ color: "var(--text-muted)" }}>{step.desc}</p>
               </div>
             ))}
           </div>
-        </div>
+        </Container>
       </section>
 
-      {/* ════════════════════════════
-          REVIEWS
-      ════════════════════════════ */}
-      <section id="reviews" className="py-24 overflow-hidden">
-        <div className="max-w-6xl mx-auto px-6 text-center mb-16">
+      {/* ════════════ REVIEWS ════════════ */}
+      <section id="reviews" style={{ paddingTop: 96, paddingBottom: 96, overflow: "hidden" }}>
+        <Container maxWidth={1152} style={{ textAlign: "center", marginBottom: 64 }}>
           <SectionLabel>Testimonials</SectionLabel>
-          <h2 className="font-display font-semibold" style={{ fontSize: "clamp(2rem, 5vw, 3.5rem)", lineHeight: 1.1 }}>
+          <h2
+            className="font-display font-semibold"
+            style={{ fontSize: "clamp(2rem, 5vw, 3.5rem)", lineHeight: 1.1 }}
+          >
             Questers <span className="gold-shimmer">worldwide</span> are winning
           </h2>
-        </div>
+        </Container>
 
-        <div className="relative">
+        <div style={{ position: "relative" }}>
           <div className="absolute left-0 top-0 bottom-0 w-24 z-10 pointer-events-none" style={{ background: "linear-gradient(90deg, var(--obsidian), transparent)" }} />
           <div className="absolute right-0 top-0 bottom-0 w-24 z-10 pointer-events-none" style={{ background: "linear-gradient(-90deg, var(--obsidian), transparent)" }} />
-
           <div className="flex gap-5 scroll-left" style={{ width: "max-content" }}>
             {[...reviews, ...reviews].map((r, i) => (
               <div
                 key={i}
-                className="shrink-0 p-6 rounded-3xl w-72"
+                className="shrink-0 p-6 rounded-3xl"
                 style={{
+                  width: 288,
                   background: "linear-gradient(135deg, rgba(28,28,46,0.9), rgba(20,20,32,0.9))",
                   border: "1px solid rgba(201,168,76,0.12)",
                 }}
@@ -497,7 +555,7 @@ export default function HomePage() {
                 <div className="flex items-center gap-3">
                   <div
                     className="w-9 h-9 rounded-full flex items-center justify-center text-sm font-semibold text-white"
-                    style={{ background: "linear-gradient(135deg, var(--gold-dark), var(--accent-purple))" }}
+                    style={{ background: "linear-gradient(135deg, var(--gold-dark), var(--accent-purple))", flexShrink: 0 }}
                   >
                     {r.name[0]}
                   </div>
@@ -512,19 +570,17 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ════════════════════════════
-          DOWNLOAD
-      ════════════════════════════ */}
-      <section id="download" className="py-32 px-6 relative overflow-hidden">
+      {/* ════════════ DOWNLOAD ════════════ */}
+      <section id="download" style={{ paddingTop: 128, paddingBottom: 128, position: "relative", overflow: "hidden" }}>
         <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse 80% 60% at 50% 50%, rgba(107,79,187,0.14) 0%, rgba(201,168,76,0.06) 40%, transparent 70%)" }} />
         <div className="absolute inset-x-0 h-px top-0" style={{ background: "linear-gradient(90deg, transparent, rgba(201,168,76,0.4), transparent)" }} />
 
-        <div className="max-w-4xl mx-auto text-center relative z-10">
+        <Container maxWidth={896} style={{ textAlign: "center", position: "relative", zIndex: 10 }}>
           <SectionLabel>Begin Your Quest</SectionLabel>
 
           <h2
-            className="font-display font-semibold mb-6"
-            style={{ fontSize: "clamp(2.5rem, 7vw, 5.5rem)", lineHeight: 1.0 }}
+            className="font-display font-semibold"
+            style={{ fontSize: "clamp(2.5rem, 7vw, 5.5rem)", lineHeight: 1.0, marginBottom: 24 }}
           >
             Download{" "}
             <span className="gold-shimmer">TimeQue</span>
@@ -532,12 +588,12 @@ export default function HomePage() {
             <span style={{ color: "rgba(245,240,232,0.40)" }}>for free today</span>
           </h2>
 
-          <p className="text-lg mb-14 max-w-lg mx-auto" style={{ color: "var(--text-muted)" }}>
+          <p style={{ fontSize: 18, color: "var(--text-muted)", maxWidth: 480, margin: "0 auto 56px" }}>
             Join over 2.4 million questers who have already transformed their daily
             routine into an unforgettable adventure.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-14">
+          <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "center", gap: 16, marginBottom: 56 }}>
             {[
               { icon: "🍎", sub: "Download on the", platform: "App Store" },
               { icon: "▶", sub: "Get it on", platform: "Google Play" },
@@ -562,35 +618,34 @@ export default function HomePage() {
             ))}
           </div>
 
-          {/* Mini phone preview under download */}
-          <div className="flex justify-center gap-6 mt-4">
-            <div className="float opacity-80">
+          {/* Download phones */}
+          <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "center", gap: 24 }}>
+            <div className="float" style={{ transform: "rotate(-6deg) translateY(20px)", opacity: 0.75, flexShrink: 0 }}>
               <PhoneFrame src="/ss1_splash.jpg" alt="Splash" />
             </div>
-            <div className="float-delay" style={{ marginTop: 24 }}>
+            <div className="float-delay relative z-10" style={{ flexShrink: 0 }}>
+              <div className="absolute -inset-6 rounded-[3.5rem] blur-2xl opacity-40" style={{ background: "linear-gradient(135deg, rgba(201,168,76,0.2), rgba(107,79,187,0.15))" }} />
               <PhoneFrame src="/ss3_explore.jpg" alt="Explore" />
             </div>
-            <div className="float-delay-2 opacity-80">
+            <div className="float-delay-2" style={{ transform: "rotate(6deg) translateY(20px)", opacity: 0.75, flexShrink: 0 }}>
               <PhoneFrame src="/ss5_fruit.jpg" alt="Game" />
             </div>
           </div>
 
-          <p className="text-xs mt-10" style={{ color: "rgba(255,255,255,0.18)" }}>
+          <p style={{ fontSize: 12, color: "rgba(255,255,255,0.18)", marginTop: 40 }}>
             Free to download · In-app purchases available · iOS 15+ & Android 10+
           </p>
-        </div>
+        </Container>
       </section>
 
-      {/* ════════════════════════════
-          FOOTER
-      ════════════════════════════ */}
-      <footer className="py-12 px-6 text-center" style={{ borderTop: "1px solid rgba(201,168,76,0.08)" }}>
-        <div className="flex items-center justify-center gap-3 mb-4">
+      {/* ════════════ FOOTER ════════════ */}
+      <footer style={{ paddingTop: 48, paddingBottom: 48, textAlign: "center", borderTop: "1px solid rgba(201,168,76,0.08)" }}>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 12, marginBottom: 16 }}>
           <div className="w-7 h-7 rounded-xl flex items-center justify-center text-sm" style={{ background: "linear-gradient(135deg, var(--gold), var(--accent-purple))" }}>⏱</div>
           <span className="font-display text-lg font-semibold" style={{ color: "var(--text-primary)" }}>TimeQue</span>
         </div>
         <p className="text-xs mb-6" style={{ color: "var(--text-muted)" }}>Making every moment legendary.</p>
-        <div className="flex items-center justify-center gap-6 text-xs mb-4" style={{ color: "rgba(255,255,255,0.25)" }}>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 24, fontSize: 12, marginBottom: 16, color: "rgba(255,255,255,0.25)" }}>
           <span style={{ cursor: "none" }}>Privacy Policy</span>
           <span>·</span>
           <span style={{ cursor: "none" }}>Terms of Service</span>
